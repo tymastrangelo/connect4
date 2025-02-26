@@ -118,14 +118,30 @@ function checkWinner() {
     }
 }
 
+function resetGame() {
+    document.getElementById("winner").innerText = "";
+    document.getElementById("playAgain").style.display = "none"; // Hide button
+
+    // Clear board
+    let boardDiv = document.getElementById("board");
+    boardDiv.innerHTML = ""; 
+
+    gameOver = false;
+    currPlayer = playerRed; 
+    setGame(); // Reinitialize game
+}
+
 function setWinner(r, c) {
     let winner = document.getElementById("winner");
     if (board[r][c] == playerRed) {
-        winner.innerText = "Red Player Wins!";
-    }
-    else {
-        winner.innerText = "Yellow Player Wins!";
+        winner.innerText = "🔥 Red Player Wins!";
+    } else {
+        winner.innerText = "💛 Yellow Player Wins!";
     }
 
     gameOver = true;
+
+    setTimeout(() => {
+        document.getElementById("playAgain").style.display = "block"; // Show button after delay
+    }, 500);
 }
